@@ -44,7 +44,7 @@ public class BoardController {
 		}
 		return jsonString;
 	}
-	
+	// 수정
 	//RequestBody => json/xml 데이터를 받을 때
 	// multipart/form-data => RequestParam(title, content,writer)
 	//						=> RequetPart(files)
