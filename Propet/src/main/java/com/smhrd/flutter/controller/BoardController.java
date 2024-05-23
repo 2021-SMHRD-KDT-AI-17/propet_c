@@ -95,6 +95,7 @@ public class BoardController {
 		om.convertValue(map.get("idx"), Long.class);
 		
 		String result=service.oneBoardImg(idx);
+		System.out.println("오류 지움");
 		
 		System.out.println(result);
 		return result;
