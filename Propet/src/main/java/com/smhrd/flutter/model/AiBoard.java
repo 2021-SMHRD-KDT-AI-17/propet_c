@@ -12,10 +12,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AiBoard {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idx")
+	@Column(name="idx")
 	private Long idx;
 	
 	@Column(name = "b_title")
@@ -28,6 +28,6 @@ public class AiBoard {
 	private String writer;
 	
 	@Column(name = "b_img")
-	private String img; //이미지 파일 이름 
+	private String img; // 임이지 파일 이름
 	
 }

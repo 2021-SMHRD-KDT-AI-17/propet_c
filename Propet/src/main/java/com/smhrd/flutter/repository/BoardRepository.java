@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.smhrd.flutter.model.AiBoard;
 
 @Repository
-public interface BoardRepository extends JpaRepository<AiBoard, Long>{
+public interface BoardRepository extends JpaRepository<AiBoard, Long> {
+	
 
 }

@@ -19,84 +19,70 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
+
+	// HashMap - JSON 호환성 좋음
+	// Jackson 라이브러리 내장(boot) => JSON 문자열 => Object(HashMap - key:value)
 	
-	//HashMap - JSON 호환성이 가장 좋음!!
-	//Jackson 라이브러리 내장(boot) => JSON 문자열 => object(HashMap: key-value) -> 함수형태
-	
-	//http://localhost:8089/boot/join
-	@PostMapping("/join") // 회원가입
-	public int memberJoin(@RequestBody HashMap<String, Object> map ) {
+	//	http://localhost:8089/boot
+	@PostMapping("/join") // 회원가입	
+	public int memberJoin(@RequestBody HashMap<String,Object>map) {
+//			System.out.println(map);
+//		HashMap => AiMember(class)
+		ObjectMapper om = new ObjectMapper();
+//		joinMember key 값에서 json 데이터 받아와서 AiMember 클래스로
+		AiMember joinMember =  om.convertValue(map.get("joinMember"), AiMember.class);
 		
-		// HashMap => Aimember(class)
-		ObjectMapper om=new ObjectMapper();
-		AiMember joinMember = om.convertValue(map.get("joinMember"), AiMember.class);
+//		Controller(요청받음)-> Service(로직처리)-> Repository(db연동)
 		
-		//controller(요청받음) -> service(로직 처리) -> repository(DB연동)
-		
+//		Service 1 or 0 return
 		int result = service.memberJoin(joinMember);
-		
 		return result;
 	}
-	
-	//http://localhost:8089/boot/login
 	@PostMapping("/login")
-	public String memeberLogin(@RequestBody HashMap<String, Object> map) {
-		//System.out.println(map); // 값 넘어오는지 확인
-		ObjectMapper om=new ObjectMapper();
-		AiMember loginMember = om.convertValue(map.get("loginMember"), AiMember.class);
-		
-		//Java Object => json 형식의 문자열(String) 변형
+	public String memberLogin(@RequestBody HashMap<String,Object> map) {
+//		System.out.println(map);
+		ObjectMapper om =new ObjectMapper();
+		AiMember loginMember = om.convertValue(map.get("loginMember"),AiMember.class);
+//		Java Object => JSON 형식의 문자열ㄹㄹ 로변형
 		AiMember result = service.memberLogin(loginMember);
 		
-		//로그인이 성공 : result != null => result(AiMember) -> jsonString
-		// 로그인 실패 : result = null => null
-		
-		String jsonString =null;
-		if(result != null) {
+//		로그인 성공 : result != null => result(AiMember) -> jsonString
+//		로그인 실패 : result != null => null 반환
+		String jsonString=null;
+		if(result !=null) {
 			try {
 				jsonString = om.writeValueAsString(result);
 			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		System.out.println(jsonString);
 		return jsonString;
 	}
-	
 	@PatchMapping("/update")
-	public String memberUpdate(@RequestBody HashMap<String, Object> map) {
-		
-		//System.out.println(map);
-		ObjectMapper om=new ObjectMapper();
-		AiMember updateMember = om.convertValue(map.get("updateMember"), AiMember.class);
-		
-		//result : 기존(uid,id,age)/ 수정(password,nickname)
-		AiMember result= service.memberUpdate(updateMember);
-		
-		String jsonString =null;
-		
-		if(result!=null) {
-			try {
-				jsonString=om.writeValueAsString(result);
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return jsonString;
-	}
+	public String memberUpdate(@RequestBody HashMap<String,Object>map) {
+		System.out.println(map);
+	ObjectMapper om = new ObjectMapper();
+	AiMember updateMember =  om.convertValue(map.get("updateMember"), AiMember.class);
 	
+//	result : 기존(uid, id, age) / 수정(password, nickname)
+	AiMember result = service.memberUpdate(updateMember);
+	String jsonString = null;
+	if(result !=null) {
+		try {
+			jsonString = om.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+	}
+	return jsonString;
+}
 	@DeleteMapping("/delete")
 	public int memberDelete(@RequestBody HashMap<String, Object> map) {
-		
-		//System.out.println(map);
-		ObjectMapper om=new ObjectMapper();
-		Long uid = om.convertValue(map.get("uid"), Long.class );
-		
+// 삭제만 진행할거라 repository 안해도됨
+		ObjectMapper om = new ObjectMapper();
+		Long uid = om.convertValue(map.get("uid"),Long.class );
 		service.memberDelete(uid);
-		
-		
 		return 0;
 	}
 }
