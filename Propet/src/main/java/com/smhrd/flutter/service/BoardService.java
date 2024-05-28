@@ -8,7 +8,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.smhrd.flutter.converter.ImageToBase64;
 import com.smhrd.flutter.model.AiBoard;
 import com.smhrd.flutter.repository.BoardRepository;
 
@@ -42,7 +41,7 @@ public class BoardService implements BoardServiceImpl {
 			File targetFile = new File("c:\\img\\"+imgFileName);
 
 //			2. base64 형식으로 인코딩 (File -> String)
-			ImageToBase64 converter = new ImageToBase64();
+			com.smhrd.flutter.coverter.ImageToBase64 converter = new com.smhrd.flutter.coverter.ImageToBase64();
 			String fileStringValue= null;
 			try {
 				fileStringValue = converter.convert(targetFile);

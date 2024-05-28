@@ -20,34 +20,34 @@ public class Pet {
 	@Id // PK 지정 long 으로 자주 사용
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 고유키 자동생성
 	@Column(name = "p_idx")
-	private Long p_idx;
+	private long pidx;
 	
 	@Column(name ="p_name", length = 50) //펫이름
-	private String p_name;
+	private String pname;
 	
 	@Column(name ="p_kind", length = 50) //펫 종
-	private String p_kind;
+	private String pkind;
 	
 	@Column(name ="p_age") //펫나이
-	private Long p_age;
+	private Long page;
 	
 	@Column(name = "p_kg", precision = 4, scale = 2) //펫 몸무게
-    private BigDecimal p_Kg;
+    private BigDecimal pKg;
 	
 	@Column(name ="p_gender", length = 50) //펫성별
-	private String p_gender;
+	private String pgender;
 	
 	@Column(name ="p_surgery", length = 50) //중성화여부
-	private String p_surgery;
+	private String psurgery;
 	
 	@Column(name ="p_disease", length = 50) //질환여부
-	private String p_disease;
+	private String pdisease;
 	
 	@Column(name ="p_diseaseinf", length = 50) //질환정보
-	private String p_diseaseinf;
+	private String pdiseaseinf;
 	
-	@Column(name ="u_id", length = 50)
-	private String u_id;
+	@Column(name ="u_idx")
+	private long uidx;
 	
 	
 }
