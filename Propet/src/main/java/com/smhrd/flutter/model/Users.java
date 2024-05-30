@@ -26,7 +26,7 @@ public class Users {
 	private String uname;
 	
 	@Column(name ="u_pw", length = 50)
-	private String pw;
+	private String pw;               
 	
 	@Column(name ="u_phone", length = 50)
 	private String uphone;
