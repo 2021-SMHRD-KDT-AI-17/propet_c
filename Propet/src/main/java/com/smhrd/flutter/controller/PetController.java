@@ -1,15 +1,20 @@
 package com.smhrd.flutter.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smhrd.flutter.model.AiBoard;
+import com.smhrd.flutter.model.AiMember;
 import com.smhrd.flutter.model.Pet;
-
+import com.smhrd.flutter.model.Users;
 import com.smhrd.flutter.service.PetService;
 
 @RestController
@@ -18,6 +23,24 @@ public class PetController {
     @Autowired
     PetService service;
 
+    @PostMapping("/selectAllPet")
+    public String selectAllPet(@RequestBody HashMap<String, Object> map) {
+    	
+    	ObjectMapper om = new ObjectMapper();
+    	Long uidx = Long.valueOf(map.get("uidx").toString());
+    	List<Pet> list = service.selectAllPet(uidx);
+    	String jsonString = null;
+    	if (list !=null) {
+    		try {
+    			jsonString = om.writeValueAsString(list);
+    		}catch (JsonProcessingException e) {
+    			e.printStackTrace();
+			}
+    	}
+    	
+    	return jsonString;
+    }
+    
     @PostMapping("/enroll")
     public int petEnroll(@RequestBody HashMap<String, Object> map) {
         ObjectMapper om = new ObjectMapper();

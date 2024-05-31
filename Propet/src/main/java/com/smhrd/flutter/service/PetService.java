@@ -1,8 +1,12 @@
 package com.smhrd.flutter.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.smhrd.flutter.model.AiBoard;
 import com.smhrd.flutter.model.Pet;
 import com.smhrd.flutter.repository.PetRepository;
 
@@ -23,4 +27,15 @@ public class PetService implements PetServiceImpl {
             return 0; // 펫등록 실패
         }
     }
+
+	public List<Pet> selectAllPet(long uidx) {
+		return repo.findByUidx(uidx);
+	}
+
+	@Override
+	public List<Pet> selectAllPet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
