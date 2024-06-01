@@ -32,10 +32,8 @@ public class PetService implements PetServiceImpl {
 		return repo.findByUidx(uidx);
 	}
 
-	@Override
-	public List<Pet> selectAllPet() {
-		// TODO Auto-generated method stub
-		return null;
+	public void deletePet(Long p_idx) {
+		repo.deleteById(p_idx);
 	}
 
 }

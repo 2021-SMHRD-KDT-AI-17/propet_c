@@ -7,5 +7,7 @@ import com.smhrd.flutter.model.Pet;
 public interface PetServiceImpl {
     public int petEnroll(Pet p);
     
-    public List<Pet> selectAllPet();
+    public List<Pet> selectAllPet(long uidx);
+    
+    public void deletePet(Long p_idx);
 }

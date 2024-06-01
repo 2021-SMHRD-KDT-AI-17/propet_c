@@ -22,6 +22,16 @@ public class PetController {
     
     @Autowired
     PetService service;
+    
+    @PostMapping("/deletePet")
+    public int deletePet(@RequestBody HashMap<String, Object> map) {
+    	ObjectMapper om = new ObjectMapper();
+		Long p_idx = om.convertValue(map.get("pidx"), Long.class);
+
+		System.out.println("p_idx: " + p_idx);
+		service.deletePet(p_idx);
+    	return 0;
+    }
 
     @PostMapping("/selectAllPet")
     public String selectAllPet(@RequestBody HashMap<String, Object> map) {
