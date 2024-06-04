@@ -61,4 +61,16 @@ public class PetController {
 		
         return result;
     }
+    
+    @PostMapping("/updatePet")
+    public int updatePet(@RequestBody HashMap<String, Object> map) {
+        ObjectMapper om = new ObjectMapper();
+        Pet updatePet = om.convertValue(map.get("updatePet"), Pet.class);
+        System.out.println("Received pet data for update: " + updatePet); // 로그 추가
+        int result = service.updatePet(updatePet.getPidx(), updatePet);
+        return result;
+    }
+    
+    
+    
 }

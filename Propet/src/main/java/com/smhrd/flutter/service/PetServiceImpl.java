@@ -10,4 +10,6 @@ public interface PetServiceImpl {
     public List<Pet> selectAllPet(long uidx);
     
     public void deletePet(Long p_idx);
+    
+    int updatePet(Long pidx, Pet updatedPet);
 }

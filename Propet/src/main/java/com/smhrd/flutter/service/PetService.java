@@ -35,5 +35,30 @@ public class PetService implements PetServiceImpl {
 	public void deletePet(Long p_idx) {
 		repo.deleteById(p_idx);
 	}
+	
+	
+	 @Override
+	    public int updatePet(Long pidx, Pet updatedPet) {
+	        try {
+	            Pet existingPet = repo.findById(pidx).orElse(null);
+	            if (existingPet != null) {
+	                existingPet.setPname(updatedPet.getPname());
+	                existingPet.setPkind(updatedPet.getPkind());
+	                existingPet.setPage(updatedPet.getPage());
+	                existingPet.setPKg(updatedPet.getPKg());
+	                existingPet.setPgender(updatedPet.getPgender());
+	                existingPet.setPsurgery(updatedPet.getPsurgery());
+	                existingPet.setPdisease(updatedPet.getPdisease());
+	                existingPet.setPdiseaseinf(updatedPet.getPdiseaseinf());
+	                existingPet.setUidx(updatedPet.getUidx());
+	                repo.save(existingPet);
+	                return 1;
+	            } else {
+	                return 0;
+	            }
+	        } catch (Exception e) {
+	            return 0;
+	        }
+	    }
 
 }
