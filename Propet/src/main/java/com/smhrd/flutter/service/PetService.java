@@ -32,8 +32,8 @@ public class PetService implements PetServiceImpl {
 		return repo.findByUidx(uidx);
 	}
 
-	public void deletePet(Long p_idx) {
-		repo.deleteById(p_idx);
+	public void deletePet(Long pidx) {
+		repo.deleteById(pidx);
 	}
 	
 	

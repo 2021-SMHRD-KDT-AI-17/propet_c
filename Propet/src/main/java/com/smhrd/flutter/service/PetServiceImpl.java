@@ -9,7 +9,7 @@ public interface PetServiceImpl {
     
     public List<Pet> selectAllPet(long uidx);
     
-    public void deletePet(Long p_idx);
+    public void deletePet(Long pidx);
     
     int updatePet(Long pidx, Pet updatedPet);
 }
