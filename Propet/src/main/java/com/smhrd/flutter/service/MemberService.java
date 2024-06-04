@@ -31,6 +31,7 @@ public class MemberService implements MemberServiceImpl {
 		return  repo.findByIdAndPw(m.getId(), m.getPw());
 	}
 	
+	@Override
 	public Users memberUpdate(Users m) {
 //		update
 //		1. update(수정)하고 싶은 행 현재 정보 가져오기(select)

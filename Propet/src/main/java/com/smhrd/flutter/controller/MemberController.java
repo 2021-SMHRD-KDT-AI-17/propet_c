@@ -60,24 +60,25 @@ public class MemberController {
 		System.out.println(jsonString);
 		return jsonString;
 	}
+
 	@PatchMapping("/update")
-	public String memberUpdate(@RequestBody HashMap<String,Object>map) {
+	public String memberUpdate(@RequestBody HashMap<String, Object> map) {
 		System.out.println(map);
-	ObjectMapper om = new ObjectMapper();
-	Users updateMember =  om.convertValue(map.get("updateMember"), Users.class);
-	
+		ObjectMapper om = new ObjectMapper();
+		Users updateMember = om.convertValue(map.get("updateMember"), Users.class);
+
 //	result : 기존(uid, id, age) / 수정(password, nickname)
-	Users result = service.memberUpdate(updateMember);
-	String jsonString = null;
-	if(result !=null) {
-		try {
-			jsonString = om.writeValueAsString(result);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+		Users result = service.memberUpdate(updateMember);
+		String jsonString = null;
+		if (result != null) {
+			try {
+				jsonString = om.writeValueAsString(result);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
 		}
+		return jsonString;
 	}
-	return jsonString;
-}
 	@DeleteMapping("/delete")
 	public int memberDelete(@RequestBody HashMap<String, Object> map) {
 // 삭제만 진행할거라 repository 안해도됨
