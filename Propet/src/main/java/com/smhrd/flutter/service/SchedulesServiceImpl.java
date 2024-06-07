@@ -9,4 +9,5 @@ public interface SchedulesServiceImpl {
 	    List<Schedules> getAllSchedules();
 	    Schedules getScheduleById(Long sidx);
 	    void deleteSchedule(Long sidx);
+	    List<Schedules> getSchedulesByUserId(Long uidx);
 }

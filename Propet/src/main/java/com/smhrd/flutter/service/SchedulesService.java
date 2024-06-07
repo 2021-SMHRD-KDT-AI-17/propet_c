@@ -32,4 +32,9 @@ public class SchedulesService implements SchedulesServiceImpl {
     public void deleteSchedule(Long sidx) {
     	repo.deleteById(sidx);
     }
+    
+    @Override
+    public List<Schedules> getSchedulesByUserId(Long uidx) {
+        return repo.findByUidx(uidx);
+    }
 }

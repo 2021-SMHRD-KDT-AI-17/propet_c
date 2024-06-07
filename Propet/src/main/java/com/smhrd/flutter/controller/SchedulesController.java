@@ -32,4 +32,9 @@ public class SchedulesController {
     public void deleteSchedule(@PathVariable("sidx") Long sidx) {
         scheduleService.deleteSchedule(sidx);
     }
+    
+    @GetMapping("/getSchedules/user/{uidx}")
+    public List<Schedules> getSchedulesByUserId(@PathVariable("uidx") Long uidx) {
+        return scheduleService.getSchedulesByUserId(uidx);
+    }
 }
