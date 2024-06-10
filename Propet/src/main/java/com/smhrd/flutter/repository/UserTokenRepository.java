@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface UserTokenRepository extends JpaRepository<UserToken, Long> {
 
 	List<UserToken> findByUidx(long uidx);
+
+	List<UserToken> findByTokenAndUidx(String token, long uidx);
 }

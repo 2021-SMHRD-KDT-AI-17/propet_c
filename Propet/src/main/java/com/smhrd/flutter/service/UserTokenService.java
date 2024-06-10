@@ -17,4 +17,6 @@ public class UserTokenService implements UserTokenServiceImpl{
 	public List<UserToken> selectToken(long uidx){
 		return repo.findByUidx(uidx);
 	}
+	
+	
 }

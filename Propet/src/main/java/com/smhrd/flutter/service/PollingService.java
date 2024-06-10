@@ -32,16 +32,16 @@ public class PollingService {
         System.out.println("Polling database for changes...");
         List<ChangeEntity> changes = changeRepository.findAll();
         for (ChangeEntity change : changes) {
-            System.out.println("q_tf changed to " + change.getQtf());
-            System.out.println("Updated Question: " + change.getQcontent() + ", " + change.getQanswer() + ", u_idx: " + change.getUidx());
             // 여기서 알림 전송 로직 추가
             List<UserToken> tokens = selectToken(change.getUidx());
-            
+            System.out.println("-----------------------------");
+            System.out.println(tokens);
             for (UserToken token : tokens) {
                 System.out.println("Token: " + token.getToken() + ", UIdx: " + change.getUidx());
                 fcmService.sendNotification(token.getToken(), 
                 		"미응답 답변이 등록되었습니다.", 
                 		change.getQcontent() + "에 대한 답변이 등록되었습니다.");
+                System.out.println("--------------------- 답변 전송 완료");
             }
         }
         // 변경 사항 처리 후 테이블 비우기 (또는 처리된 항목만 삭제)
