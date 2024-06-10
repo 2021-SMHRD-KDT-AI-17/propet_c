@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-
+import java.sql.Date;  // 수정된 부분
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +34,9 @@ public class Schedules {
     @Column(name = "s_date", nullable = false, updatable = false)
     private Timestamp sdate;
 
+    @Column(name = "ndate", nullable = false)
+    private Date ndate;  // 수정된 부분
+    
     @Column(name ="u_idx")
     private long uidx;
 

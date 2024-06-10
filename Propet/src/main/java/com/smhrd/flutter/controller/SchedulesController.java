@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import com.smhrd.flutter.model.Schedules;
 import com.smhrd.flutter.service.SchedulesService;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -32,9 +33,14 @@ public class SchedulesController {
     public void deleteSchedule(@PathVariable("sidx") Long sidx) {
         scheduleService.deleteSchedule(sidx);
     }
-    
+
     @GetMapping("/getSchedules/user/{uidx}")
     public List<Schedules> getSchedulesByUserId(@PathVariable("uidx") Long uidx) {
         return scheduleService.getSchedulesByUserId(uidx);
+    }
+
+    @GetMapping("/getSchedulesByDateAndUser/{uidx}")
+    public List<Schedules> getSchedulesByDateAndUser(@PathVariable("uidx") Long uidx, @RequestParam("ndate") String ndate) {
+        return scheduleService.getSchedulesByDateAndUser(uidx, Date.valueOf(ndate));  // 수정된 부분
     }
 }

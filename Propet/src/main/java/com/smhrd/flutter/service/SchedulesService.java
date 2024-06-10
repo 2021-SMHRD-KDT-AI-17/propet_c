@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.smhrd.flutter.model.Schedules;
 import com.smhrd.flutter.repository.SchedulesRepository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -36,5 +37,10 @@ public class SchedulesService implements SchedulesServiceImpl {
     @Override
     public List<Schedules> getSchedulesByUserId(Long uidx) {
         return repo.findByUidx(uidx);
+    }
+    
+    @Override
+    public List<Schedules> getSchedulesByDateAndUser(Long uidx, Date ndate) {
+        return repo.findByUidxAndNdate(uidx, ndate);
     }
 }
