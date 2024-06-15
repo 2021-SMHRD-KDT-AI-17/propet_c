@@ -46,4 +46,7 @@ public class Pet {
 
     @Column(name ="u_idx")
     private long uidx;
+    
+    @Column(name = "p_image")
+    private String pimage;
 }
